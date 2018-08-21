@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 var program = require('commander');
-var path = require('path');
+var fs = require('fs');
 
 program
 .version('0.1.2')
@@ -17,7 +17,7 @@ var filename = [];
 if (program.args.length > 0) {
   for (var i = 0; i < program.args.length; i++) {
     var f = program.args[i];
-    if (!path.existsSync(f)) {
+    if (!fs.existsSync(f)) {
       throw (f + ' does not exists');
     } else {
       filename.push(f);
@@ -37,14 +37,14 @@ var app = module.exports = express.createServer();
 
 // Configuration
 app.configure(function () {
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + '/../views');
   app.set('view engine', 'jade');
   app.set('view options', { layout: false });
   app.use(express.bodyParser());
   app.use(express.methodOverride());
-  app.use(require('stylus').middleware({ src: __dirname + '/public' }));
+  app.use(require('stylus').middleware({ src: __dirname + '/../public' }));
   app.use(app.router);
-  app.use(express['static'](__dirname + '/public'));
+  app.use(express['static'](__dirname + '/../public'));
 });
 
 app.configure('development', function () {

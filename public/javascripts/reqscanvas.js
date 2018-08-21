@@ -452,7 +452,7 @@
   window.onload = init;
 
   // Establish the websocket connection
-  var socket = io.connect('localhost', {port:8081});
+  var socket = io.connect('http://localhost:8081');
   socket.on('log', function (data) {
     var robj = JSON.parse(data);
     // console.log(robj);
